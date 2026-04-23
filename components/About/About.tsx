@@ -91,7 +91,7 @@ export default function About({ locale }: AboutProps) {
             </p>
 
             {/* Highlights Grid */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 xs:grid-cols-2 gap-4">
               {highlights.map((item, index) => (
                 <motion.div
                   key={index}

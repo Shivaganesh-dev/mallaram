@@ -96,7 +96,7 @@ export default function Facilities({ locale }: FacilitiesProps) {
         </motion.div>
 
         {/* Facilities Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
           {facilities.map((facility, index) => (
             <motion.div
               key={facility.key}
@@ -107,10 +107,12 @@ export default function Facilities({ locale }: FacilitiesProps) {
               whileHover={{ y: -8, scale: 1.02 }}
               className="group relative"
             >
-              <div className="flex flex-col items-center text-center p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-cream">
+              <div className="flex flex-col items-center text-center p-4 xs:p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-cream">
                 {/* Icon */}
-                <div className={`w-20 h-20 rounded-2xl ${facility.bgColor} flex items-center justify-center text-primary mb-5 group-hover:scale-110 transition-transform duration-300`}>
-                  {facility.icon}
+                <div className={`w-16 h-16 md:w-20 md:h-20 rounded-2xl ${facility.bgColor} flex items-center justify-center text-primary mb-4 md:mb-5 group-hover:scale-110 transition-transform duration-300`}>
+                  <div className="scale-75 md:scale-100">
+                    {facility.icon}
+                  </div>
                 </div>
                 
                 {/* Label */}

@@ -91,17 +91,17 @@ export default function Hero({ locale }: HeroProps) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.8 }}
         >
-          <h1 className="text-6xl md:text-8xl font-bold text-white mb-3 drop-shadow-2xl tracking-tight">
+          <h1 className="text-4xl sm:text-6xl md:text-8xl font-bold text-white mb-3 drop-shadow-2xl tracking-tight leading-tight">
             {dictionary.hero.title}
           </h1>
-          <div className="flex items-center justify-center gap-4 mb-4">
-            <span className="w-16 h-0.5 bg-cream/60"></span>
-            <p className="text-3xl md:text-4xl font-semibold text-cream drop-shadow-lg italic">
+          <div className="flex items-center justify-center gap-2 md:gap-4 mb-4 px-4">
+            <span className="hidden xs:block w-8 md:w-16 h-0.5 bg-cream/60"></span>
+            <p className="text-xl sm:text-3xl md:text-4xl font-semibold text-cream drop-shadow-lg italic leading-tight">
               "{dictionary.hero.tagline}"
             </p>
-            <span className="w-16 h-0.5 bg-cream/60"></span>
+            <span className="hidden xs:block w-8 md:w-16 h-0.5 bg-cream/60"></span>
           </div>
-          <p className="text-xl md:text-2xl text-cream/90 drop-shadow">
+          <p className="text-sm sm:text-xl md:text-2xl text-cream/90 drop-shadow max-w-lg mx-auto px-4">
             {dictionary.hero.subtitle}
           </p>
         </motion.div>

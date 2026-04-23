@@ -41,7 +41,7 @@ export default async function LocalePage({ params }: { params: Promise<{ locale:
   const currentLocale = locale as Locale;
   
   return (
-    <main className="min-h-screen bg-cream pt-[160px] lg:pt-[200px]">
+    <main className="min-h-screen bg-cream pt-[80px] lg:pt-[200px]">
       <Suspense fallback={<div className="h-16 bg-cream" />}>
         <Navigation locale={currentLocale} />
       </Suspense>

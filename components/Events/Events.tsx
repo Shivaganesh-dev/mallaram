@@ -72,15 +72,15 @@ export default function Events({ locale }: EventsProps) {
                     key={event.id}
                     className="bg-cream rounded-xl p-4 shadow-md hover:shadow-lg transition-shadow"
                   >
-                    <div className="flex gap-4">
+                    <div className="flex flex-col xs:flex-row gap-4">
                       <img
                         src={event.image}
                         alt={event.title}
-                        className="w-24 h-24 rounded-lg object-cover flex-shrink-0"
+                        className="w-full xs:w-24 h-48 xs:h-24 rounded-lg object-cover flex-shrink-0"
                       />
                       <div>
-                        <h4 className="font-semibold text-earth-dark mb-1">{event.title}</h4>
-                        <p className="text-sm text-earth">{event.description}</p>
+                        <h4 className="font-semibold text-earth-dark mb-1 text-base xs:text-lg">{event.title}</h4>
+                        <p className="text-sm text-earth leading-relaxed">{event.description}</p>
                       </div>
                     </div>
                   </div>
@@ -106,15 +106,15 @@ export default function Events({ locale }: EventsProps) {
                     key={event.id}
                     className="bg-cream rounded-xl p-4 shadow-md hover:shadow-lg transition-shadow"
                   >
-                    <div className="flex gap-4">
+                    <div className="flex flex-col xs:flex-row gap-4">
                       <img
                         src={event.image}
                         alt={event.title}
-                        className="w-24 h-24 rounded-lg object-cover flex-shrink-0"
+                        className="w-full xs:w-24 h-48 xs:h-24 rounded-lg object-cover flex-shrink-0"
                       />
                       <div>
-                        <h4 className="font-semibold text-earth-dark mb-1">{event.title}</h4>
-                        <p className="text-sm text-earth">{event.description}</p>
+                        <h4 className="font-semibold text-earth-dark mb-1 text-base xs:text-lg">{event.title}</h4>
+                        <p className="text-sm text-earth leading-relaxed">{event.description}</p>
                       </div>
                     </div>
                   </div>
