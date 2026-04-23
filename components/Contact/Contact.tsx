@@ -7,15 +7,15 @@ interface ContactProps {
   locale: Locale;
 }
 
-// Mallaram Village approximate coordinates (Telangana)
-const MAP_IFRAME_URL = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15224.5465784845!2d78.5!3d18.0!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTjCsDAwJzAwLjAiTiA3OMKwMzAnMDAuMCJF!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin';
+// Mallaram Village Google Maps Embed URL
+const MAP_IFRAME_URL = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15197.696144885!2d78.8000000!3d18.5000000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcd02c00b02f7dd%3A0xc56220fad96b9943!2sMallaram%2C%20Telangana%20505403!5e0!3m2!1sen!2sin!4v1713870000000!5m2!1sen!2sin';
 
 export default function Contact({ locale }: ContactProps) {
   const dictionary = getDictionary(locale);
   const t = getTranslations(dictionary);
 
   return (
-    <section id="contact" className="py-16 md:py-24 px-4 bg-cream">
+    <section id="contact" className="py-16 md:py-24 px-4 bg-white border-t border-gray-100">
       <div className="max-w-6xl mx-auto">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -25,7 +25,7 @@ export default function Contact({ locale }: ContactProps) {
         >
           {dictionary.contact.title}
         </motion.h2>
-
+ 
         <div className="grid md:grid-cols-2 gap-12 items-start">
           {/* Contact Info */}
           <motion.div
@@ -35,7 +35,7 @@ export default function Contact({ locale }: ContactProps) {
             className="space-y-6"
           >
             {/* Panchayat Office */}
-            <div className="bg-cream-light rounded-xl p-6 shadow-md">
+            <div className="bg-gray-50 rounded-xl p-6 shadow-sm border border-gray-100">
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -43,14 +43,14 @@ export default function Contact({ locale }: ContactProps) {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-earth-dark mb-1">{dictionary.contact.panchayat}</h3>
-                  <p className="text-earth text-sm">Mallaram Village, Telangana</p>
+                  <h3 className="font-semibold text-primary mb-1">{dictionary.contact.panchayat}</h3>
+                  <p className="text-gray-600 text-sm">Mallaram Village, Telangana</p>
                 </div>
               </div>
             </div>
-
+ 
             {/* Phone */}
-            <div className="bg-cream-light rounded-xl p-6 shadow-md">
+            <div className="bg-gray-50 rounded-xl p-6 shadow-sm border border-gray-100">
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -58,14 +58,14 @@ export default function Contact({ locale }: ContactProps) {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-earth-dark mb-1">{dictionary.contact.phone}</h3>
-                  <p className="text-earth text-sm">+91 XXXXX XXXXX</p>
+                  <h3 className="font-semibold text-primary mb-1">{dictionary.contact.phone}</h3>
+                  <p className="text-gray-600 text-sm">+91 9912037420</p>
                 </div>
               </div>
             </div>
-
+ 
             {/* Address */}
-            <div className="bg-cream-light rounded-xl p-6 shadow-md">
+            <div className="bg-gray-50 rounded-xl p-6 shadow-sm border border-gray-100">
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -74,8 +74,8 @@ export default function Contact({ locale }: ContactProps) {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-earth-dark mb-1">{dictionary.contact.address}</h3>
-                  <p className="text-earth text-sm">Mallaram Village,<br />Telangana, India - 50XXXX</p>
+                  <h3 className="font-semibold text-primary mb-1">{dictionary.contact.address}</h3>
+                  <p className="text-gray-600 text-sm">Mallaram Village,<br />Telangana, India - 505403</p>
                 </div>
               </div>
             </div>

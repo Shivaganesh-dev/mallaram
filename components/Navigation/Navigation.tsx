@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Locale, getDictionary, getTranslations } from '@/lib/i18n';
@@ -9,10 +9,18 @@ interface NavigationProps {
   locale: Locale;
 }
 
+
 export default function Navigation({ locale }: NavigationProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const dictionary = getDictionary(locale);
   const t = getTranslations(dictionary);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const navItems = [
     { key: 'home', href: `/${locale}#home` },
@@ -30,129 +38,121 @@ export default function Navigation({ locale }: NavigationProps) {
   };
 
   return (
-    <nav className="stick top-0 z-50 bg-primary shadow-lg">
-      {/* Top decorative border */}
-      <div className="h-1 bg-earth"></div>
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-100' : 'bg-white shadow-sm border-b border-transparent'}`}>
+      {/* Decorative top strip */}
+      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-600 z-[60]"></div>
       
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
-          {/* Left - Village Name */}
-          <Link href={`/${locale}`} className="flex items-center gap-3">
-            <div className="hidden sm:flex items-center justify-center w-12 h-12 rounded-full bg-cream/20">
-              <span className="text-xl font-bold text-cream">M</span>
-            </div>
-            <div className="flex flex-col">
-              <span className="text-xl font-bold text-cream leading-tight">{dictionary.hero.title}</span>
-              <span className="text-xs text-cream/80">{dictionary.hero.tagline}</span>
-            </div>
-          </Link>
-
-          {/* Center - Logo */}
-          <div className="hidden md:flex items-center justify-center absolute left-1/2 -translate-x-1/2">
-            <div className="relative flex items-center justify-center">
-              <div className="w-16 h-16 rounded-full bg-cream p-1 shadow-md">
-                <img
-                  src="/assets/STATE-TELANGANA-LOGO (1).png"
-                  alt="Telangana State Logo"
-                  className="w-full h-full object-contain rounded-full"
-                />
+      <div className="max-w-7xl mx-auto px-4 md:px-6">
+        <div className={`flex flex-col lg:flex-row items-center justify-between transition-all duration-500 ease-in-out ${scrolled ? 'h-16 lg:h-20' : 'h-32 lg:h-44'}`}>
+          
+          {/* LEFT: Village Identity */}
+          <div className={`flex-1 flex justify-start order-2 lg:order-1 transition-transform duration-500 ${scrolled ? 'scale-90 lg:translate-x-0' : 'scale-100'}`}>
+            <Link href={`/${locale}`} className="flex flex-col items-center lg:items-start group">
+              <span className="text-2xl md:text-3xl font-black text-primary tracking-tighter transition-colors duration-300 group-hover:text-earth">
+                {dictionary.hero.title}
+              </span>
+              <div className="flex items-center gap-2">
+                <span className="h-px w-4 bg-earth/40"></span>
+                <span className="text-[9px] md:text-[10px] font-bold text-earth uppercase tracking-[0.4em]">
+                  {dictionary.hero.tagline}
+                </span>
+                <span className="h-px w-4 bg-earth/40"></span>
               </div>
-              {/* Decorative ring */}
-              <div className="absolute inset-0 w-16 h-16 rounded-full border-2 border-cream/30 -m-1"></div>
-            </div>
+            </Link>
           </div>
-
-          {/* Right - Nav Items + Language */}
-          <div className="hidden lg:flex items-center gap-6">
-            {navItems.map((item) => (
-              <Link
-                key={item.key}
-                href={item.href}
-                className="text-sm font-medium text-cream/90 hover:text-white transition-colors relative group"
+ 
+          {/* CENTER: MAIN LOGO */}
+          <div className="order-1 lg:order-2 flex justify-center relative">
+            <Link href={`/${locale}`} className="relative group flex items-center justify-center">
+              {/* Outer glow ring - static opacity for performance */}
+              <div 
+                className={`absolute inset-0 rounded-full bg-gradient-to-tr from-earth/20 via-primary/10 to-earth/20 blur-3xl -m-12 pointer-events-none transition-opacity duration-700 ${scrolled ? 'opacity-30' : 'opacity-60'}`}
+              ></div>
+              
+              <div 
+                className={`relative transition-all duration-500 ease-out will-change-transform rounded-full bg-white p-2 shadow-2xl border-[4px] border-earth/20 flex items-center justify-center overflow-hidden ${scrolled ? 'w-20 h-20 md:w-24 md:h-24' : 'w-36 h-36 md:w-44 md:h-44'}`}
               >
-                {t(`nav.${item.key}`)}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cream transition-all group-hover:w-full"></span>
-              </Link>
-            ))}
-            <button
-              onClick={toggleLanguage}
-              className="ml-2 px-4 py-2 text-sm font-semibold rounded-lg bg-cream text-primary hover:bg-white transition-colors shadow-md"
-            >
-              {t('language.toggle')}
-            </button>
+                <img
+                  src="/images/telangana-state-logo.png"
+                  alt="Telangana State Logo"
+                  className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-110 z-10"
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent pointer-events-none"></div>
+              </div>
+            </Link>
           </div>
-
-          {/* Mobile - Logo + Menu */}
-          <div className="flex items-center gap-3 md:hidden">
-            <div className="w-10 h-10 rounded-full bg-cream p-1 shadow-md">
-              <img
-                src="/assets/STATE-TELANGANA-LOGO (1).png"
-                alt="Telangana State Logo"
-                className="w-full h-full object-contain rounded-full"
-              />
+ 
+          {/* RIGHT: Nav Links & Controls */}
+          <div className={`flex-1 flex justify-end items-center gap-4 lg:gap-6 order-3 transition-transform duration-500 ${scrolled ? 'scale-95' : 'scale-100'}`}>
+            <div className="hidden xl:flex items-center gap-6">
+              {navItems.slice(0, 5).map((item) => (
+                <Link
+                  key={item.key}
+                  href={item.href}
+                  className="text-[10px] font-black text-gray-600 hover:text-primary uppercase tracking-[0.2em] relative group px-2 py-1 transition-colors"
+                >
+                  {t(`nav.${item.key}`)}
+                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-earth transition-all group-hover:w-full"></span>
+                </Link>
+              ))}
             </div>
-            <button
-              className="p-2 text-cream"
-              onClick={() => setIsOpen(!isOpen)}
-              aria-label="Toggle menu"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                {isOpen ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                )}
-              </svg>
-            </button>
+            
+            <div className="flex items-center gap-3">
+              <button
+                onClick={toggleLanguage}
+                className="px-4 py-2 lg:px-6 lg:py-2.5 text-[9px] lg:text-[10px] font-black rounded-full bg-primary text-white hover:bg-earth transition-all shadow-md active:scale-95 uppercase tracking-widest"
+              >
+                {t('language.toggle')}
+              </button>
+              
+              {/* Complaint Button */}
+              <Link
+                href={`/${locale}#complaint`}
+                className="hidden sm:flex items-center gap-2 px-4 py-2 lg:px-5 lg:py-2.5 text-[9px] lg:text-[10px] font-black rounded-full border-2 border-primary text-primary hover:bg-primary hover:text-white transition-all active:scale-95 uppercase tracking-widest"
+              >
+                <svg className="w-3 h-3 lg:w-4 lg:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                </svg>
+                {t('nav.complaint')}
+              </Link>
+              
+              {/* Mobile Menu Toggle */}
+              <button
+                className="lg:hidden p-2 rounded-full bg-gray-50 text-primary hover:bg-gray-100 transition-colors"
+                onClick={() => setIsOpen(!isOpen)}
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  {isOpen ? (
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
+                  ) : (
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 8h16M4 16h16" />
+                  )}
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
 
-        {/* Mobile Nav */}
+        {/* Mobile Navigation Menu */}
         <AnimatePresence>
           {isOpen && (
             <motion.div
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="lg:hidden pb-4 border-t border-cream/20 mt-2"
+              className="lg:hidden overflow-hidden bg-white"
             >
-              <div className="flex flex-col gap-1 pt-4">
-                {navItems.map((item, index) => (
-                  <motion.div
+              <div className="flex flex-col gap-2 pt-8 pb-4">
+                {navItems.map((item) => (
+                  <Link
                     key={item.key}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.05 }}
+                    href={item.href}
+                    onClick={() => setIsOpen(false)}
+                    className="text-lg font-black text-gray-700 hover:text-primary py-3 border-b border-gray-50 transition-colors uppercase tracking-wider"
                   >
-                    <Link
-                      href={item.href}
-                      className="flex items-center gap-3 py-3 px-2 text-sm font-medium text-cream hover:text-white hover:bg-cream/10 rounded-lg transition-colors"
-                      onClick={() => setIsOpen(false)}
-                    >
-                      <span className="w-2 h-2 rounded-full bg-cream/50"></span>
-                      {t(`nav.${item.key}`)}
-                    </Link>
-                  </motion.div>
+                    {t(`nav.${item.key}`)}
+                  </Link>
                 ))}
-                <motion.div
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: navItems.length * 0.05 }}
-                  className="pt-2 border-t border-cream/20 mt-2"
-                >
-                  <button
-                    onClick={() => {
-                      toggleLanguage();
-                      setIsOpen(false);
-                    }}
-                    className="w-full flex items-center justify-center gap-2 px-4 py-3 text-sm font-semibold rounded-lg bg-cream text-primary hover:bg-white transition-colors"
-                  >
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
-                    </svg>
-                    {t('language.toggle')}
-                  </button>
-                </motion.div>
               </div>
             </motion.div>
           )}

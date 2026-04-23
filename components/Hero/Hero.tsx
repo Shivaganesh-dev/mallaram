@@ -10,16 +10,16 @@ interface HeroProps {
 
 const heroImages = [
   {
-    src: 'https://images.unsplash.com/photo-1513175242576-9f5af6fcd91c?w=1200&q=80',
-    alt: 'Village landscape',
+    src: '/images/hero/hero-1.jpg',
+    alt: 'Mallaram Village View 1',
   },
   {
-    src: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1200&q=80',
-    alt: 'Fields and nature',
+    src: '/images/hero/hero-2.jpg',
+    alt: 'Mallaram Village View 2',
   },
   {
-    src: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200&q=80',
-    alt: 'Mountains',
+    src: '/images/hero/hero-3.jpg',
+    alt: 'Mallaram Village View 3',
   },
 ];
 

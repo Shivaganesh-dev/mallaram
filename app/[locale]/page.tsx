@@ -1,5 +1,6 @@
 import { Suspense } from 'react';
 import Navigation from '@/components/Navigation/Navigation';
+import OfficialsSection from '@/components/Navigation/OfficialsSection';
 import Hero from '@/components/Hero/Hero';
 import About from '@/components/About/About';
 import Facilities from '@/components/Facilities/Facilities';
@@ -40,10 +41,11 @@ export default async function LocalePage({ params }: { params: Promise<{ locale:
   const currentLocale = locale as Locale;
   
   return (
-    <main className="min-h-screen bg-cream">
+    <main className="min-h-screen bg-cream pt-[160px] lg:pt-[200px]">
       <Suspense fallback={<div className="h-16 bg-cream" />}>
         <Navigation locale={currentLocale} />
       </Suspense>
+      <OfficialsSection locale={currentLocale} />
       <Hero locale={currentLocale} />
       <About locale={currentLocale} />
       <Facilities locale={currentLocale} />

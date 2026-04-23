@@ -10,14 +10,16 @@ interface GalleryProps {
 
 // Gallery placeholder images
 const galleryImages = [
-  { src: 'https://images.unsplash.com/photo-1513175242576-9f5af6fcd91c?w=600&q=80', alt: 'Village landscape' },
-  { src: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600&q=80', alt: 'Fields' },
-  { src: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&q=80', alt: 'Mountains' },
-  { src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80', alt: 'Nature' },
-  { src: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=600&q=80', alt: 'Night sky' },
-  { src: 'https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=600&q=80', alt: 'Sunrise' },
-  { src: 'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=600&q=80', alt: 'Valley' },
-  { src: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=600&q=80', alt: 'Forest' },
+  { src: '/images/gallery/gallery-1.jpg', alt: 'Mallaram Gallery 1' },
+  { src: '/images/gallery/gallery-2.jpg', alt: 'Mallaram Gallery 2' },
+  { src: '/images/gallery/gallery-3.jpg', alt: 'Mallaram Gallery 3' },
+  { src: '/images/gallery/gallery-4.jpg', alt: 'Mallaram Gallery 4' },
+  { src: '/images/gallery/gallery-5.jpg', alt: 'Mallaram Gallery 5' },
+  { src: '/images/gallery/gallery-6.jpg', alt: 'Mallaram Gallery 6' },
+  { src: '/images/gallery/gallery-7.jpg', alt: 'Mallaram Gallery 7' },
+  { src: '/images/gallery/gallery-8.jpg', alt: 'Mallaram Gallery 8' },
+  { src: '/images/gallery/gallery-9.jpg', alt: 'Mallaram Gallery 9' },
+  { src: '/images/gallery/gallery-10.jpg', alt: 'Mallaram Gallery 10' },
 ];
 
 export default function Gallery({ locale }: GalleryProps) {

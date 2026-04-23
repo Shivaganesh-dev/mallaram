@@ -7,7 +7,7 @@ interface CTAProps {
   locale: Locale;
 }
 
-const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSfPLACEHOLDER/viewform';
+const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSe105PrT3jPSh76kQmuyjyHPcmXqzVo4zkHNRq0qJO4FjEcnA/viewform?usp=publish-editor';
 
 export default function CTA({ locale }: CTAProps) {
   const dictionary = getDictionary(locale);

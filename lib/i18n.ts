@@ -27,7 +27,7 @@ const enDict: Dictionary = {
   facilities: { title: "Facilities", schools: "Schools", healthcare: "Healthcare", roads: "Roads", water: "Water", electricity: "Electricity" },
   gallery: { title: "Gallery" },
   events: { title: "Events", festivals: "Festivals", localEvents: "Local Events" },
-  complaint: { title: "Have a Complaint?", description: "We value your feedback. Help us improve by submitting your complaints or suggestions.", cta: "Submit Complaint" },
+  complaint: { title: "Have a Complaint?", description: "We value your feedback. Help us improve by submitting your complaints or suggestions.", cta: "Submit Complaint / suggestion" },
   contact: { title: "Contact Us", panchayat: "Panchayat Office", phone: "Phone", address: "Address" },
   footer: { copyright: "© 2026 Mallaram Village. All rights reserved." },
   language: { toggle: "తెలుగు" }

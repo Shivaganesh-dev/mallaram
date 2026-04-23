@@ -7,9 +7,9 @@
   --color-primary-light: #2E7D32;
   --color-primary-dark: #0D3A12;
   
-  /* Background: Light Cream */
-  --color-cream: #FFF8E1;
-  --color-cream-light: #FFFDE7;
+  /* Background: Pure White */
+  --color-cream: #FFFFFF;
+  --color-cream-light: #F9FAFB;
   
   /* Accent: Earth tones */
   --color-earth: #8D6E63;
@@ -17,7 +17,7 @@
   --color-earth-dark: #5D4037;
   
   /* Semantic */
-  --color-background: var(--color-cream);
+  --color-background: #FFFFFF;
   --color-foreground: #1a1a1a;
   --color-accent: var(--color-earth);
   
