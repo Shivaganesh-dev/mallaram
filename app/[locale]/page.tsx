@@ -5,6 +5,8 @@ import About from '@/components/About/About';
 import Facilities from '@/components/Facilities/Facilities';
 import Gallery from '@/components/Gallery/Gallery';
 import Events from '@/components/Events/Events';
+import CTA from '@/components/CTA/CTA';
+import Contact from '@/components/Contact/Contact';
 import Footer from '@/components/Footer/Footer';
 import { locales, getDictionary, Locale } from '@/lib/i18n';
 import { notFound } from 'next/navigation';
@@ -47,6 +49,8 @@ export default async function LocalePage({ params }: { params: Promise<{ locale:
       <Facilities locale={currentLocale} />
       <Gallery locale={currentLocale} />
       <Events locale={currentLocale} />
+      <CTA locale={currentLocale} />
+      <Contact locale={currentLocale} />
       <Footer locale={currentLocale} />
     </main>
   );
