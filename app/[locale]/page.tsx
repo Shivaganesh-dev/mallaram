@@ -1,4 +1,9 @@
-import { locales, getDictionary, defaultLocale } from '@/lib/i18n';
+import { Suspense } from 'react';
+import Navigation from '@/components/Navigation/Navigation';
+import Hero from '@/components/Hero/Hero';
+import About from '@/components/About/About';
+import Facilities from '@/components/Facilities/Facilities';
+import { locales, getDictionary, Locale } from '@/lib/i18n';
 import { notFound } from 'next/navigation';
 
 export async function generateStaticParams() {
@@ -8,11 +13,11 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   
-  if (!locales.includes(locale as any)) {
+  if (!locales.includes(locale as Locale)) {
     return notFound();
   }
   
-  const dictionary = getDictionary(locale as any);
+  const dictionary = getDictionary(locale as Locale);
   
   return {
     title: `${dictionary.common.appName} | ${dictionary.common.tagline}`,
@@ -23,17 +28,20 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function LocalePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   
-  if (!locales.includes(locale as any)) {
+  if (!locales.includes(locale as Locale)) {
     notFound();
   }
   
-  const dictionary = getDictionary(locale as any);
+  const currentLocale = locale as Locale;
   
   return (
     <main className="min-h-screen bg-cream">
-      <h1 className="text-4xl font-bold text-primary">{dictionary.hero.title}</h1>
-      <p className="text-xl text-earth-dark mt-2">{dictionary.hero.tagline}</p>
-      <p className="text-lg text-earth mt-1">{dictionary.hero.subtitle}</p>
+      <Suspense fallback={<div className="h-16 bg-cream" />}>
+        <Navigation locale={currentLocale} />
+      </Suspense>
+      <Hero locale={currentLocale} />
+      <About locale={currentLocale} />
+      <Facilities locale={currentLocale} />
     </main>
   );
 }
