@@ -22,6 +22,7 @@ export default function Navigation({ locale }: NavigationProps) {
     { key: 'facilities', href: `/${locale}#facilities` },
     { key: 'gallery', href: `/${locale}#gallery` },
     { key: 'events', href: `/${locale}#events` },
+    { key: 'complaint', href: `/${locale}#complaint` },
     { key: 'contact', href: `/${locale}#contact` },
   ];
 

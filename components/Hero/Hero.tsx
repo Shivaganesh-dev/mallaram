@@ -45,10 +45,6 @@ export default function Hero({ locale }: HeroProps) {
     setCurrentSlide((prev) => (prev - 1 + heroImages.length) % heroImages.length);
   };
 
-  const scrollToComplaint = () => {
-    document.getElementById('complaint')?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
     <section id="home" className="relative h-[70vh] min-h-[500px] overflow-hidden">
       {/* Background Image Slider */}
@@ -86,21 +82,6 @@ export default function Hero({ locale }: HeroProps) {
           <p className="text-lg md:text-xl text-cream-light mt-2 drop-shadow">
             {dictionary.hero.subtitle}
           </p>
-        </motion.div>
-
-        {/* CTA Button */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.8 }}
-          className="mt-8"
-        >
-          <button
-            onClick={scrollToComplaint}
-            className="px-8 py-3 text-lg font-semibold rounded-full bg-white text-primary hover:bg-cream transition-colors shadow-lg"
-          >
-            {dictionary.hero.cta}
-          </button>
         </motion.div>
       </div>
 

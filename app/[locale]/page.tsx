@@ -49,8 +49,8 @@ export default async function LocalePage({ params }: { params: Promise<{ locale:
       <Facilities locale={currentLocale} />
       <Gallery locale={currentLocale} />
       <Events locale={currentLocale} />
-      <CTA locale={currentLocale} />
       <Contact locale={currentLocale} />
+      <CTA locale={currentLocale} />
       <Footer locale={currentLocale} />
     </main>
   );
