@@ -73,19 +73,6 @@ export default function Hero({ locale }: HeroProps) {
 
       {/* Hero Content */}
       <div className="relative h-full flex flex-col items-center justify-center text-center px-4">
-        {/* Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.6 }}
-          className="mb-6"
-        >
-          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cream/20 backdrop-blur-sm text-cream text-sm font-medium border border-cream/30">
-            <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
-            Smart Village
-          </span>
-        </motion.div>
-
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
