@@ -25,6 +25,7 @@ export default function Navigation({ locale }: NavigationProps) {
   const navItems = [
     { key: 'home', href: `/${locale}#home` },
     { key: 'about', href: `/${locale}#about` },
+    { key: 'schemes', href: `/${locale}/schemes` },
     { key: 'facilities', href: `/${locale}#facilities` },
     { key: 'gallery', href: `/${locale}#gallery` },
     { key: 'events', href: `/${locale}#events` },
@@ -84,7 +85,7 @@ export default function Navigation({ locale }: NavigationProps) {
           {/* RIGHT: Nav Links & Controls */}
           <div className={`flex-1 flex justify-end items-center gap-2 lg:gap-6 transition-transform duration-500 ${scrolled ? 'scale-95' : 'scale-100'}`}>
             <div className="hidden xl:flex items-center gap-6">
-              {navItems.slice(0, 5).map((item) => (
+              {navItems.slice(0, 6).map((item) => (
                 <Link
                   key={item.key}
                   href={item.href}

@@ -59,7 +59,7 @@ export default function Contact({ locale }: ContactProps) {
                 </div>
                 <div>
                   <h3 className="font-semibold text-primary mb-1">{dictionary.contact.phone}</h3>
-                  <p className="text-gray-600 text-sm">+91 9912037420</p>
+                  <p className="text-gray-600 text-sm">+91 9989120933, 8008253003</p>
                 </div>
               </div>
             </div>

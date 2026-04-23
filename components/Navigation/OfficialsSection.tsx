@@ -12,37 +12,37 @@ interface NavigationProps {
 const officials = [
   { 
     id: 1, 
-    name: 'Shri Jishnu Dev Varma', 
-    title: 'Hon\'ble Governor', 
-    src: 'https://upload.wikimedia.org/wikipedia/commons/4/4b/Telangana_Governor_Jishnu_Dev_Varma%2C_portrait.png', 
-    alt: 'Governor of Telangana' 
-  },
-  { 
-    id: 2, 
     name: 'Shri A. Revanth Reddy', 
     title: 'Hon\'ble Chief Minister', 
-    src: 'https://upload.wikimedia.org/wikipedia/commons/4/47/A._Revanth_Reddy_official_portrait.png', 
+    src: '/assets/officials/revanth.jpg', 
     alt: 'Chief Minister of Telangana' 
   },
   { 
+    id: 2, 
+    name: 'Smt D.Anasuya Seethakka', 
+    title: 'Minister of Panchayat Raj & Rural Development', 
+    src: '/assets/officials/seethakka.jpg', 
+    alt: 'Minister of Panchayat Raj & Rural Development' 
+  },
+  { 
     id: 3, 
-    name: 'Shri Mallu Bhatti Vikramarka', 
-    title: 'Hon\'ble Deputy CM', 
-    src: 'https://upload.wikimedia.org/wikipedia/commons/c/c2/Mallu_Bhatti_Vikramarka_Portrait.png', 
-    alt: 'Deputy Chief Minister' 
+    name: 'Shri Aadi Srinivas', 
+    title: 'Hon\'ble MLA, Vemulawada', 
+    src: '/assets/officials/aadi-srinivas.jpg', 
+    alt: 'MLA Vemulawada' 
   },
   { 
     id: 4, 
-    name: 'Shri Muzammil Khan', 
-    title: 'Collector', 
-    src: '', 
+    name: 'Smt Garima Agarwal, IAS', 
+    title: 'Hon\'ble Collector', 
+    src: '/assets/officials/garima-agarwal.jpg', 
     alt: 'District Collector' 
   },
   { 
     id: 5, 
-    name: 'Gram Panchayat', 
-    title: 'Sarpanch', 
-    src: '', 
+    name: 'Smt Sangam Arpitha', 
+    title: 'Sarpanch, Mallaram', 
+    src: '/assets/officials/sarpanch.jpg', 
     alt: 'Mallaram Sarpanch' 
   },
 ];
@@ -62,9 +62,13 @@ function OfficialImage({ image, size = 'md' }: { image: typeof officials[0]; siz
       viewport={{ once: true }}
       className="flex flex-col items-center gap-2 group px-2"
     >
-      <div className={`${sizeClasses[size]} rounded-full bg-white p-1 shadow-[0_8px_20px_-8px_rgba(0,0,0,0.2)] border-2 border-earth/20 flex items-center justify-center overflow-hidden transform hover:scale-105 transition-all duration-500 group-hover:border-earth/60 group-hover:shadow-[0_15px_30px_-10px_rgba(0,0,0,0.3)]`}>
+      <div className={`${sizeClasses[size]} aspect-square rounded-full bg-white p-1 shadow-[0_8px_20px_-8px_rgba(0,0,0,0.2)] border-2 border-earth/20 flex items-center justify-center overflow-hidden transform hover:scale-105 transition-all duration-500 group-hover:border-earth/60 group-hover:shadow-[0_15px_30px_-10px_rgba(0,0,0,0.3)]`}>
         {image.src ? (
-          <img src={image.src} alt={image.alt} className="w-full h-full object-cover" />
+          <img 
+            src={image.src} 
+            alt={image.alt} 
+            className="w-full h-full object-cover scale-[1.15] translate-y-[15%]" 
+          />
         ) : (
           <div className="bg-earth/5 w-full h-full flex items-center justify-center">
             <span className="text-primary/40 text-[8px] md:text-[10px] font-black text-center px-1 uppercase leading-tight">{image.name}</span>
@@ -72,8 +76,8 @@ function OfficialImage({ image, size = 'md' }: { image: typeof officials[0]; siz
         )}
       </div>
       <div className="flex flex-col items-center">
-        <span className="text-[9px] md:text-xs text-primary font-black uppercase tracking-[0.15em] text-center mb-0.5 whitespace-nowrap">{image.title}</span>
-        <span className="text-[8px] md:text-[10px] text-primary/60 font-bold uppercase tracking-widest text-center whitespace-nowrap">{image.name}</span>
+        <span className="text-[9px] md:text-xs text-primary font-black uppercase tracking-[0.15em] text-center mb-0.5 whitespace-nowrap">{image.name}</span>
+        <span className="text-[8px] md:text-[10px] text-primary/60 font-bold uppercase tracking-widest text-center whitespace-nowrap">{image.title}</span>
       </div>
     </motion.div>
   );
