@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+/* Design Tokens from PRD */
+:root {
+  /* Primary: Deep Green */
+  --color-primary: #1B5E20;
+  --color-primary-light: #2E7D32;
+  --color-primary-dark: #0D3A12;
+  
+  /* Background: Light Cream */
+  --color-cream: #FFF8E1;
+  --color-cream-light: #FFFDE7;
+  
+  /* Accent: Earth tones */
+  --color-earth: #8D6E63;
+  --color-earth-light: #A1887F;
+  --color-earth-dark: #5D4037;
+  
+  /* Semantic */
+  --color-background: var(--color-cream);
+  --color-foreground: #1a1a1a;
+  --color-accent: var(--color-earth);
+  
+  /* Typography */
+  --font-sans: 'Inter', system-ui, sans-serif;
+}
+
+@theme inline {
+  --color-primary: var(--color-primary);
+  --color-primary-light: var(--color-primary-light);
+  --color-primary-dark: var(--color-primary-dark);
+  --color-cream: var(--color-cream);
+  --color-cream-light: var(--color-cream-light);
+  --color-earth: var(--color-earth);
+  --color-earth-light: var(--color-earth-light);
+  --color-earth-dark: var(--color-earth-dark);
+  --color-background: var(--color-background);
+  --color-foreground: var(--color-foreground);
+  --color-accent: var(--color-accent);
+  
+  --font-sans: var(--font-sans);
+}
+
+/* Base styles */
+body {
+  background: var(--color-cream);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-cream-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-earth-light);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-earth);
+}
