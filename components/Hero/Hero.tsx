@@ -21,6 +21,14 @@ const heroImages = [
     src: '/images/hero/hero-3.jpg',
     alt: 'Mallaram Village View 3',
   },
+  {
+    src: '/images/hero/hero-4.jpg',
+    alt: 'Mallaram Village View 4',
+  },
+  {
+    src: '/images/hero/hero-5.jpg',
+    alt: 'Mallaram Village View 5',
+  },
 ];
 
 export default function Hero({ locale }: HeroProps) {
