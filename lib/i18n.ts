@@ -2,9 +2,22 @@ export type Locale = 'en' | 'te';
 
 export type Dictionary = {
   common: { appName: string; tagline: string; subtitle: string };
-  nav: { home: string; about: string; schemes: string; facilities: string; gallery: string; events: string; contact: string; complaint: string };
+  nav: { home: string; about: string; dashboard: string; schemes: string; facilities: string; gallery: string; events: string; contact: string; complaint: string };
   hero: { title: string; tagline: string; subtitle: string; cta: string };
-  about: { 
+  ikp: {
+    title: string;
+    subtitle: string;
+    name: string;
+    phone: string;
+    aadhaar: string;
+    checkStatus: string;
+    bookNew: string;
+    statusFound: string;
+    noBooking: string;
+    confirm: string;
+    success: string;
+  };
+about: { 
     title: string; 
     tagline: string;
     description: string;
@@ -29,6 +42,16 @@ export type Dictionary = {
   events: { title: string; festivals: string; localEvents: string };
   complaint: { title: string; description: string; cta: string };
   contact: { title: string; panchayat: string; phone: string; address: string };
+  auth: {
+    login: string;
+    register: string;
+    email: string;
+    password: string;
+    signIn: string;
+    noAccount: string;
+    alreadyAccount: string;
+    error: string;
+  };
   footer: { copyright: string };
   language: { toggle: string };
 };
@@ -40,9 +63,22 @@ export const defaultLocale: Locale = 'en';
 // English dictionary (default)
 const enDict: Dictionary = {
   common: { appName: "Mallaram Village", tagline: "Mana Ooru", subtitle: "Smart village rooted in nature" },
-  nav: { home: "Home", about: "About", schemes: "Schemes", facilities: "Facilities", gallery: "Gallery", events: "Events", contact: "Contact", complaint: "Complaint" },
+  nav: { home: "Home", about: "About", dashboard: "IKP Booking", schemes: "Govt Schemes", facilities: "Facilities", gallery: "Gallery", events: "Events", contact: "Contact", complaint: "Complaint" },
   hero: { title: "Mallaram", tagline: "Mana Ooru", subtitle: "Smart village rooted in nature", cta: "Submit Complaint" },
-  about: { 
+  ikp: {
+    title: "IKP Centre Booking",
+    subtitle: "Book your slot for paddy submission",
+    name: "Full Name",
+    phone: "Phone Number",
+    aadhaar: "Aadhar Number (Last 4 digits)",
+    checkStatus: "Check Booking Status",
+    bookNew: "New Booking",
+    statusFound: "Booking Found",
+    noBooking: "No booking found for this number",
+    confirm: "Book Slot",
+    success: "Slot Booked Successfully!",
+  },
+  about: {
     title: "Village Digital Governance",
     tagline: "One Vision, Digital Telangana",
     description: "Under the leadership of Revanth Reddy, our village has taken a crucial step towards transparent and accountable governance through Digital Telangana's 'One Vision'.",
@@ -79,16 +115,38 @@ const enDict: Dictionary = {
   events: { title: "Events", festivals: "Festivals", localEvents: "Local Events" },
   complaint: { title: "Have a Complaint?", description: "We value your feedback. Help us improve by submitting your complaints or suggestions.", cta: "Submit Complaint / suggestion" },
   contact: { title: "Contact Us", panchayat: "Panchayat Office", phone: "Phone", address: "Address" },
+  auth: {
+    login: "Login",
+    register: "Register",
+    email: "Email Address",
+    password: "Password",
+    signIn: "Sign In",
+    noAccount: "Don't have an account?",
+    alreadyAccount: "Already have an account?",
+    error: "Invalid email or password",
+  },
   footer: { copyright: "© 2026 Mallaram Village. All rights reserved. \n Developed by Samhithreddy Sangam" },
   language: { toggle: "తెలుగు" }
 };
-
 // Telugu dictionary
 const teDict: Dictionary = {
   common: { appName: "మల్లారం గ్రామం", tagline: "మనా ఊరు", subtitle: "స్మార్ట్ విలేజ్" },
-  nav: { home: "హోమ్", about: "పాలన", schemes: "పథకాలు", facilities: "సౌకర్యాలు", gallery: "ఫోటోలు", events: "కార్యక్రమాలు", contact: "సంప్రదింపు", complaint: "ఫిర్యాదు" },
+  nav: { home: "హోమ్", about: "పాలన", dashboard: "IKP బుకింగ్", schemes: "పథకాలు", facilities: "సౌకర్యాలు", gallery: "ఫోటోలు", events: "కార్యక్రమాలు", contact: "సంప్రదింపు", complaint: "ఫిర్యాదు" },
   hero: { title: "మల్లారం", tagline: "మనా ఊరు", subtitle: "స్మార్ట్ విలేజ్", cta: "ఫిర్యాదు" },
-  about: { 
+  ikp: {
+    title: "IKP సెంటర్ బుకింగ్",
+    subtitle: "వరి ధాన్యం సేకరణ కోసం మీ స్లాట్‌ను బుక్ చేసుకోండి",
+    name: "పూర్తి పేరు",
+    phone: "ఫోన్ నంబర్",
+    aadhaar: "ఆధార్ నంబర్ (చివరి 4 అంకెలు)",
+    checkStatus: "బుకింగ్ స్థితిని తనిఖీ చేయండి",
+    bookNew: "కొత్త బుకింగ్",
+    statusFound: "బుకింగ్ కనుగొనబడింది",
+    noBooking: "ఈ నంబర్‌కు ఎటువంటి బుకింగ్ కనుగొనబడలేదు",
+    confirm: "స్లాట్ బుక్ చేయండి",
+    success: "స్లాట్ విజయవంతంగా బుక్ చేయబడింది!",
+  },
+about: { 
     title: "గ్రామ డిజిటల్ గవర్నెన్స్ ప్రారంభం",
     tagline: "డిజిటల్ తెలంగాణ “వన్ విజన్”",
     description: "Revanth Reddy నాయకత్వంలో, డిజిటల్ తెలంగాణ “వన్ విజన్” దిశగా మా గ్రామం పారదర్శకమైన మరియు బాధ్యతాయుతమైన పాలన వైపు ఒక కీలక అడుగు వేసింది.",
@@ -120,11 +178,21 @@ const teDict: Dictionary = {
     description: "మేము ప్రస్తుతం అన్ని ప్రభుత్వ పథకాల పూర్తి వివరాలను మీకు అందించడానికి కృషి చేస్తున్నాము. దయచేసి త్వరలో మళ్ళీ చూడండి!",
     backHome: "తిరిగి హోమ్ పేజీకి"
   },
-  facilities: { title: " ", schools: " ", healthcare: " ", roads: " ", water: " ", electricity: " " },
-  gallery: { title: " " },
-  events: { title: " ", festivals: " ", localEvents: " " },
-  complaint: { title: " ?", description: " ", cta: " " },
-  contact: { title: " ", panchayat: " ", phone: " ", address: " " },
+  facilities: { title: "సౌకర్యాలు", schools: "పాఠశాలలు", healthcare: "వైద్యం", roads: "రోడ్లు", water: "మంచినీరు", electricity: "విద్యుత్" },
+  gallery: { title: "ఫోటోలు" },
+  events: { title: "కార్యక్రమాలు", festivals: "పండుగలు", localEvents: "స్థానిక ఈవెంట్స్" },
+  complaint: { title: "ఫిర్యాదు ఉందా?", description: "మీ ఫీడ్‌బ్యాక్ మాకు ముఖ్యం. మీ ఫిర్యాదులు లేదా సూచనలను సమర్పించడం ద్వారా మాకు సహాయపడండి.", cta: "ఫిర్యాదును సమర్పించండి" },
+  contact: { title: "సంప్రదించండి", panchayat: "పంచాయతీ కార్యాలయం", phone: "ఫోన్", address: "చిరునామా" },
+  auth: {
+    login: "లాగిన్",
+    register: "రిజిస్టర్",
+    email: "ఈమెయిల్ చిరునామా",
+    password: "పాస్‌వర్డ్",
+    signIn: "సైన్ ఇన్",
+    noAccount: "ఖాతా లేదా?",
+    alreadyAccount: "ఇప్పటికే ఖాతా ఉందా?",
+    error: "చెల్లని ఈమెయిల్ లేదా పాస్‌వర్డ్",
+  },
   footer: { copyright: "© 2026 మల్లారం గ్రామం. అన్ని హక్కులు ప్రత్యేకించబడ్డాయి. \n Made with ❤️ by Samhithreddy Sangam" },
   language: { toggle: "EN" }
 };

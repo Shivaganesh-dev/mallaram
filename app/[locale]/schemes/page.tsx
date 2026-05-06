@@ -15,10 +15,10 @@ export default function SchemesPage() {
   const { comingSoon } = dictionary;
 
   return (
-    <main className="min-h-screen bg-[#FAF9F6] flex flex-col">
+    <main className="min-h-screen bg-[#FAF9F6]">
       <Navigation locale={locale} />
       
-      <div className="flex-grow flex items-center justify-center px-4 py-20">
+      <div className="pt-40 lg:pt-48 flex items-center justify-center px-4 py-20">
         <div className="max-w-3xl w-full text-center relative">
           {/* Background Decorative Element */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] bg-primary/5 blur-[120px] rounded-full -z-10" />

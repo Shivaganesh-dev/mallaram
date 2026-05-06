@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Locale, getDictionary, getTranslations } from '@/lib/i18n';
+import { useSession, signOut } from 'next-auth/react';
 
 interface NavigationProps {
   locale: Locale;
@@ -11,6 +12,7 @@ interface NavigationProps {
 
 
 export default function Navigation({ locale }: NavigationProps) {
+  const { data: session } = useSession();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const dictionary = getDictionary(locale);
@@ -25,6 +27,7 @@ export default function Navigation({ locale }: NavigationProps) {
   const navItems = [
     { key: 'home', href: `/${locale}#home` },
     { key: 'about', href: `/${locale}#about` },
+    { key: 'dashboard', href: `/${locale}/ikp-booking` },
     { key: 'schemes', href: `/${locale}/schemes` },
     { key: 'facilities', href: `/${locale}#facilities` },
     { key: 'gallery', href: `/${locale}#gallery` },
@@ -32,6 +35,8 @@ export default function Navigation({ locale }: NavigationProps) {
     { key: 'complaint', href: `/${locale}#complaint` },
     { key: 'contact', href: `/${locale}#contact` },
   ];
+
+  const isAdmin = (session?.user as any)?.role === 'ADMIN';
 
   const toggleLanguage = () => {
     const newLocale = locale === 'en' ? 'te' : 'en';
@@ -84,17 +89,26 @@ export default function Navigation({ locale }: NavigationProps) {
  
           {/* RIGHT: Nav Links & Controls */}
           <div className={`flex-1 flex justify-end items-center gap-2 lg:gap-6 transition-transform duration-500 ${scrolled ? 'scale-95' : 'scale-100'}`}>
-            <div className="hidden xl:flex items-center gap-6">
-              {navItems.slice(0, 6).map((item) => (
+            <div className="hidden xl:flex items-center gap-4">
+              {navItems.slice(0, 4).map((item) => (
                 <Link
                   key={item.key}
                   href={item.href}
-                  className="text-[10px] font-black text-gray-600 hover:text-primary uppercase tracking-[0.2em] relative group px-2 py-1 transition-colors"
+                  className="text-[9px] font-black text-gray-600 hover:text-primary uppercase tracking-[0.2em] relative group px-2 py-1 transition-colors"
                 >
                   {t(`nav.${item.key}`)}
                   <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-earth transition-all group-hover:w-full"></span>
                 </Link>
               ))}
+              {isAdmin && (
+                <Link
+                  href={`/${locale}/dashboard/admin`}
+                  className="text-[9px] font-black text-red-600 hover:text-red-700 uppercase tracking-[0.2em] relative group px-2 py-1 transition-colors"
+                >
+                  Admin
+                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-red-600 transition-all group-hover:w-full"></span>
+                </Link>
+              )}
             </div>
             
             <div className="flex items-center gap-2 md:gap-3">
@@ -105,6 +119,22 @@ export default function Navigation({ locale }: NavigationProps) {
                 {t('language.toggle')}
               </button>
               
+              {session ? (
+                <div className="flex items-center gap-2">
+                  <span className="hidden md:block text-[10px] font-black text-primary-dark uppercase truncate max-w-[60px]">
+                    {session.user?.name}
+                  </span>
+                  <button
+                    onClick={() => signOut()}
+                    className="p-2 rounded-full bg-red-50 text-red-600 hover:bg-red-100 transition-colors"
+                    title="Sign Out"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                    </svg>
+                  </button>
+                </div>
+              ) : null}
               {/* Mobile Menu Toggle */}
               <button
                 className="lg:hidden p-1.5 rounded-full bg-gray-50 text-primary hover:bg-gray-100 transition-colors"
@@ -157,6 +187,18 @@ export default function Navigation({ locale }: NavigationProps) {
                     </svg>
                   </Link>
                 ))}
+                {isAdmin && (
+                  <Link
+                    href={`/${locale}/dashboard/admin`}
+                    onClick={() => setIsOpen(false)}
+                    className="text-base font-black text-red-600 hover:text-red-700 py-3 px-2 border-b border-gray-50 transition-colors uppercase tracking-wider flex items-center justify-between"
+                  >
+                    Admin Control
+                    <svg className="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </Link>
+                )}
                 {/* Mobile Complaint Button inside menu */}
                 <Link
                   href={`/${locale}#complaint`}

@@ -1,0 +1,86 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  phone         String?   @unique
+  password      String
+  role          String    @default("FARMER") // ADMIN, FARMER
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  bookings      Booking[]
+  complaints    Complaint[]
+}
+
+model Slot {
+  id            String    @id @default(cuid())
+  date          DateTime
+  startTime     String
+  endTime       String
+  capacity      Int       @default(10)
+  currentBookings Int     @default(0)
+  location      String    @default("IKP Centre Mallaram")
+  bookings      Booking[]
+  
+  @@unique([date, startTime, endTime])
+}
+
+model Booking {
+  id            String        @id @default(cuid())
+  userId        String
+  user          User          @relation(fields: [userId], references: [id])
+  slotId        String
+  slot          Slot          @relation(fields: [slotId], references: [id])
+  status        String        @default("PENDING") // PENDING, APPROVED, REJECTED, COMPLETED
+  qrCode        String?       // Reference or data for QR
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+}
+
+model WeatherAlert {
+  id            String    @id @default(cuid())
+  type          String    // e.g., "RAIN", "STORM"
+  severity      String    // e.g., "LOW", "MEDIUM", "HIGH"
+  message       String
+  expiresAt     DateTime
+  createdAt     DateTime  @default(now())
+}
+
+model IrrigationSchedule {
+  id            String    @id @default(cuid())
+  title         String
+  description   String?
+  startTime     DateTime
+  endTime       DateTime
+  area          String?   // e.g., "North Canal", "South Fields"
+  createdAt     DateTime  @default(now())
+}
+
+model CropPrice {
+  id            String    @id @default(cuid())
+  cropName      String
+  price         Float
+  unit          String    @default("Quintal")
+  district      String    @default("Rajanna Sircilla")
+  date          DateTime  @default(now())
+  
+  @@index([cropName, date])
+}
+
+model Complaint {
+  id            String    @id @default(cuid())
+  userId        String?
+  user          User?     @relation(fields: [userId], references: [id])
+  subject       String
+  description   String
+  status        String    @default("OPEN") // OPEN, IN_PROGRESS, RESOLVED
+  createdAt     DateTime  @default(now())
+}
