@@ -37,8 +37,16 @@
   --color-background: var(--color-background);
   --color-foreground: var(--color-foreground);
   --color-accent: var(--color-accent);
+  --color-slick-green: #22FF88;
+  --color-slick-black: #0A0A0A;
   
   --font-sans: var(--font-sans);
+}
+
+@layer utilities {
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl;
+  }
 }
 
 /* Base styles */
