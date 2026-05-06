@@ -34,7 +34,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Slot is full' }, { status: 400 });
     }
 
-    // 3. Create booking and increment slot count
+    // 3. Create booking and increment slot count atomically
     const booking = await prisma.$transaction(async (tx) => {
       const b = await tx.booking.create({
         data: {

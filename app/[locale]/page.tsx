@@ -2,6 +2,7 @@ import { Suspense } from 'react';
 import Navigation from '@/components/Navigation/Navigation';
 import OfficialsSection from '@/components/Navigation/OfficialsSection';
 import Hero from '@/components/Hero/Hero';
+import Stats from '@/components/Stats/Stats';
 import About from '@/components/About/About';
 import Facilities from '@/components/Facilities/Facilities';
 import Gallery from '@/components/Gallery/Gallery';
@@ -47,6 +48,7 @@ export default async function LocalePage({ params }: { params: Promise<{ locale:
       </Suspense>
       <OfficialsSection locale={currentLocale} />
       <Hero locale={currentLocale} />
+      <Stats locale={currentLocale} />
       <About locale={currentLocale} />
       <Facilities locale={currentLocale} />
       <Gallery locale={currentLocale} />
